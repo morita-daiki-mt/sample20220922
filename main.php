@@ -1,9 +1,9 @@
 <?php
-require_once 'AdultCalTicketPrice.php';
-require_once 'ChildCalTicketPrice.php';
-require_once 'SeniorCalTicketPrice.php';
-require_once 'CalExCharge.php';
-require_once 'CalDiscount.php';
+require_once 'Class/AdultCalTicketPrice.php';
+require_once 'Class/ChildCalTicketPrice.php';
+require_once 'Class/SeniorCalTicketPrice.php';
+require_once 'Class/CalExCharge.php';
+require_once 'Class/CalDiscount.php';
 date_default_timezone_set('Asia/Tokyo');
 
 // 大人の人数

@@ -7,8 +7,9 @@ class SeniorCalTicketPrice {
     private $senior_amount;
 
     public function __construct(int $senior_amount) {
-        if($senior_amount < 0){
-            $senior_amount = 0;
+        if($senior_amount > 500 || $senior_amount < 0){
+            echo '人数を0〜500で入力してください'. PHP_EOL;
+            exit;
         }
         $this->senior_amount = $senior_amount;
         $this->cal_ticket_price = 0;

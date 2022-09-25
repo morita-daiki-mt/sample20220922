@@ -1,4 +1,5 @@
 <?php
+require_once 'Class/TicketAmount.php';
 require_once 'Class/AdultCalTicketPrice.php';
 require_once 'Class/ChildCalTicketPrice.php';
 require_once 'Class/SeniorCalTicketPrice.php';
@@ -6,19 +7,17 @@ require_once 'Class/CalExCharge.php';
 require_once 'Class/CalDiscount.php';
 date_default_timezone_set('Asia/Tokyo');
 
-// 大人の人数
-$adult_amount = $argv[1];
-// 子供の人数
-$child_amount = $argv[2];
-// シニアの人数
-$senior_amount = $argv[3];
 // チケットタイプ
-$ticket_type = $argv[4];
+$ticket_type = isset($argv[4]) ? $argv[4] : '';
+
+$ticket_amount =  new TicketAmount();
+$ticket_amount->set_ticket_amount_array($argv);
+$ticket_amount_array = $ticket_amount->get_ticket_amount_array();
 
 $ticket_price = 0;
-$adult_cal_ticket  = new AdultCalTicketPrice($adult_amount);
-$child_cal_ticket  = new ChildCalTicketPrice($child_amount);
-$senior_cal_ticket = new SeniorCalTicketPrice($senior_amount);
+$adult_cal_ticket  = new AdultCalTicketPrice($ticket_amount_array['adult']);
+$child_cal_ticket  = new ChildCalTicketPrice($ticket_amount_array['child']);
+$senior_cal_ticket = new SeniorCalTicketPrice($ticket_amount_array['senior']);
 
 // 小計計算
 $adult_cal_ticket->cal_ticket_price($ticket_type);
@@ -40,7 +39,7 @@ $cal_ex_charge->cal_ex_charge();
 $total_ex_charge = $cal_ex_charge->get_total_ex_charge();
 $charge_details = $cal_ex_charge->get_charge_details();
 
-$cal_discount->set_number_of_customers($adult_amount, $child_amount, $senior_amount);
+$cal_discount->set_number_of_customers($ticket_amount_array);
 $cal_discount->set_ticket_subtotal($ticket_subtotal);
 $cal_discount->cal_discount();
 $total_discount = $cal_discount->get_total_discount();

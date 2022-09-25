@@ -7,8 +7,9 @@ class ChildCalTicketPrice {
     private $child_amount;
 
     public function __construct(int $child_amount) {
-        if($child_amount < 0){
-            $child_amount = 0;
+        if($child_amount > 500 || $child_amount < 0){
+            echo '人数を0〜500で入力してください'. PHP_EOL;
+            exit;
         }
         $this->child_amount = $child_amount;
         $this->cal_ticket_price = 0;

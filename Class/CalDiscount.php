@@ -13,8 +13,8 @@ class CalDiscount {
         $this->discount += $this->mon_wen_rates();
     }
 
-    public function set_number_of_customers($adult_amount, $child_amount, $senior_amount){
-        $this->number_of_customers = array('adult' => $adult_amount, 'child' => $child_amount, 'senior' => $senior_amount);
+    public function set_number_of_customers(array $ticket_amount_array){
+        $this->number_of_customers = $ticket_amount_array;
     }
 
     public function set_ticket_subtotal($ticket_subtotal){

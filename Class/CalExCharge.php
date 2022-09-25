@@ -21,21 +21,13 @@ class CalExCharge {
 
     // 休日料金 休日は200円増とする。
     public function holiday_fee() :int{
-        // '日', 0
-        // '月', 1
-        // '火', 2
-        // '水', 3
-        // '木', 4
-        // '金', 5
-        // '土', 6
         $week = date('w');
-        
-        // if($week == 0 && $week == 6){
+        if($week == 0 || $week == 6){
             $this->charge_details['休日料金 ＋'] = 200;
             return $this->charge_details['休日料金 ＋'];
-        // }else{
-        //     return 0;
-        // }
+        }else{
+            return 0;
+        }
     }
 
 }

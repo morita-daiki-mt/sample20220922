@@ -13,8 +13,8 @@ class CalDiscount {
         $this->discount += $this->mon_wen_rates();
     }
 
-    public function set_number_of_customers(array $ticket_amount_array){
-        $this->number_of_customers = $ticket_amount_array;
+    public function set_ticket_amount_array(array $ticket_amount_array){
+        $this->ticket_amount_array = $ticket_amount_array;
     }
 
     public function set_ticket_subtotal($ticket_subtotal){
@@ -31,8 +31,8 @@ class CalDiscount {
 
     // 団体割引 10人以上だと10％割引(子供は0.5人換算とする)
     public function group_discount() : int{
-        $child_half = $this->number_of_customers['child'] * 0.5;
-        $number_of_groups = $this->number_of_customers['adult'] + $this->number_of_customers['senior'] + $child_half;
+        $child_half = $this->ticket_amount_array['child'] * 0.5;
+        $number_of_groups = $this->ticket_amount_array['adult'] + $this->ticket_amount_array['senior'] + $child_half;
         if($number_of_groups >= 10){
             $this->discount_details['団体割引 -'] = $this->ticket_subtotal * 0.1;
             return $this->discount_details['団体割引 -'];

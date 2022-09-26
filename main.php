@@ -39,7 +39,7 @@ $cal_ex_charge->cal_ex_charge();
 $total_ex_charge = $cal_ex_charge->get_total_ex_charge();
 $charge_details = $cal_ex_charge->get_charge_details();
 
-$cal_discount->set_number_of_customers($ticket_amount_array);
+$cal_discount->set_ticket_amount_array($ticket_amount_array);
 $cal_discount->set_ticket_subtotal($ticket_subtotal);
 $cal_discount->cal_discount();
 $total_discount = $cal_discount->get_total_discount();
